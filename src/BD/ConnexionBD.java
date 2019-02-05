@@ -5,15 +5,34 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Jeu.Jeu_video;
+
 
 public class ConnexionBD {
+	private  String url ="jdbc:mysql://mysql-ltpgame.alwaysdata.net/ltpgame_bd_projet";
+	private String passwd = "projet4A";
+	private String login = "ltpgame_";
+	private static Connection cn;
 	
+	private ConnexionBD() {
+		try {
+			cn=DriverManager.getConnection(url, login, passwd);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
-	public static void ajoutJV() {
-		String url ="jdbc:mysql://mysql-ltpgame.alwaysdata.net/ltpgame_bd_projet";
-		String login = "ltpgame_";
-		String passwd = "projet4A";
+	public static Connection get_instance() {
+		ConnexionBD connect=new ConnexionBD();
+		return cn;
+		
+		
+	}
+	
+	/*public static void ajoutJV() {
+		
+		
+		
 		Connection cn=null;
 		Statement st=null;
 		
@@ -36,11 +55,11 @@ public class ConnexionBD {
 				e.printStackTrace();
 			}
 		}
-	}
+	}*/
 	
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ajoutJV();
-	}
+	}*/
 }
