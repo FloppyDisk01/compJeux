@@ -13,13 +13,12 @@ public class Jeu_video {
 	private boolean estDLC;
 	
 	private Note note;
-	private ArrayList<Gameplay> gp_list;
 	private Online online;
 
 	
 
 	public Jeu_video(String nom, double prix, String genre, String editeur, String plateforme, boolean estDLC,
-			Note note, ArrayList<Gameplay> gp_list, Online online, Date date) {
+			Note note,  Online online, Date date) {
 		
 		this.nom = nom;
 		this.prix = prix;
@@ -28,7 +27,7 @@ public class Jeu_video {
 		this.plateforme = plateforme;
 		this.estDLC = estDLC;
 		this.note = note;
-		this.gp_list = gp_list;
+	
 		this.online = online;
 		this.date_sortie=date;
 	}
@@ -89,13 +88,7 @@ public class Jeu_video {
 		this.note = note;
 	}
 
-	public ArrayList<Gameplay> getGp_list() {
-		return gp_list;
-	}
 
-	public void setGp_list(ArrayList<Gameplay> gp_list) {
-		this.gp_list = gp_list;
-	}
 
 	public Online getOnline() {
 		return online;

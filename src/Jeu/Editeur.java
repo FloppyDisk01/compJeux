@@ -6,5 +6,5 @@ public class Editeur {
 	public Editeur(String nom) {
 		this.nEditeur = nom;
 	}
-
+	
 }
