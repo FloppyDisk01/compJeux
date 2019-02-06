@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.TreeMap;
-
+/*
 import Jeu.Editeur;
 
 public class Editeur_modele {
@@ -20,7 +20,7 @@ public class Editeur_modele {
 		return 0;
 	}
 	
-	/*public static void supprEditeur(Editeur e) {
+	public static void supprEditeur(Editeur e) {
 		Connection cn= null;
 		Statement st=null;
 		//String id= Integer.toString(getid(e));
@@ -46,11 +46,11 @@ public class Editeur_modele {
 				ex.printStackTrace();
 			}
 		}
-	}*/
+	}
 	
 	static void ajoutEditeur(Editeur e) {
 		
 	}
 	
 	
-}
+}*/
