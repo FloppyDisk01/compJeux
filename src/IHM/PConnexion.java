@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+@SuppressWarnings("serial")
 public class PConnexion extends JPanel{
 	private JButton bconnexion; 
 	private JLabel lab_nom_user;
