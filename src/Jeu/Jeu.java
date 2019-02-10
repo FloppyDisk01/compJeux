@@ -60,7 +60,7 @@ public class Jeu {
 		this.note = nouvJeu.note;
 		this.prix = nouvJeu.prix;
 		this.lienBoutique = nouvJeu.lienBoutique;
-		this.isDLC = nouvJeu.isDLC;
+		this.isDLC = nouvJeu.isDLC; 
 	}
 	
 	/**

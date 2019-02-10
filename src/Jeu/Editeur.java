@@ -11,7 +11,7 @@ public class Editeur {
 	 * @param nom nom de l'éditeur.
 	 */
 	public Editeur(String nom) {
-		this.nEditeur = nom;
+		this.nEditeur = nom; 
 	}
 	
 	/**

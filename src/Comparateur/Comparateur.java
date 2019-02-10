@@ -6,7 +6,7 @@ public class Comparateur {
 	
 	public Comparateur(String nameSearch, int scoreSearch){
 		this.name = nameSearch;
-		this.note = scoreSearch;
+		this.note = scoreSearch; 
 		
 	}
 	

@@ -7,7 +7,7 @@ public class Plateforme {
 	private String nPlateforme;
 	
 	public Plateforme(String nomP) {
-		this.nPlateforme = nomP;
+		this.nPlateforme = nomP; 
 	}
 	
 	/**
