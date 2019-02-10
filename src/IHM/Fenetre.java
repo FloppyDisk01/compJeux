@@ -6,6 +6,7 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+@SuppressWarnings("serial")
 public class Fenetre extends JFrame{
 	static CardLayout cl=new CardLayout();
 	
@@ -20,7 +21,7 @@ public class Fenetre extends JFrame{
 		this.setTitle("Comparateur");
 		this.setSize(800, 800);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JPanel aaa=new JPanel();
+		
 		PConnexion connexion=new PConnexion();
 		PAjout_jeu_admin ajout_jeu_admin=new PAjout_jeu_admin();
 		PFiche_jeu fiche_jeu=new PFiche_jeu();
