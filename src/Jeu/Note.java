@@ -23,7 +23,5 @@ public class Note {
 
 	public void setNbre_votants(int nbre_votants) {
 		this.nbre_votants = nbre_votants;
-	}
-	
-	
+	}	
 }

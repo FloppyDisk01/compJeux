@@ -1,20 +1,11 @@
 package Comparateur;
 
-public class Comparateur {
-	private String name;
-	private int note;
+import Jeu.*;
+
+public interface Comparateur {
 	
-	public Comparateur(String nameSearch, int scoreSearch){
-		this.name = nameSearch;
-		this.note = scoreSearch; 
-		
-	}
+	public int comparer(Jeu jv);
 	
-	public void interrogateDB() {
-		
-	}
+	public int compare(Jeu JV1, Jeu JV2);
 	
-	public void hierarchyDB() {
-		
-	}
 }
