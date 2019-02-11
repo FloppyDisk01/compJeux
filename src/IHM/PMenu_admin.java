@@ -28,7 +28,7 @@ public class PMenu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[5]);
 			}
 			
 		});
@@ -38,7 +38,7 @@ public class PMenu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
 			}
 			
 		});
@@ -48,7 +48,7 @@ public class PMenu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[2]);
 			}
 			
 		});

@@ -61,7 +61,7 @@ public class PFiche_jeu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[2]);
 			}
 			
 		});

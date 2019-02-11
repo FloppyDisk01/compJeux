@@ -27,7 +27,7 @@ public class PResultats_user extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[3]);
 			}
 			
 		});
@@ -37,7 +37,7 @@ public class PResultats_user extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[1]);
 			}
 			
 		});

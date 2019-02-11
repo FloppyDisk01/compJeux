@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +25,9 @@ public class PConnexion extends JPanel{
 		tf_nom_user=new JTextField();
 		tf_mdp=new JTextField();
 		
+		tf_nom_user.setPreferredSize(new Dimension(100,20));
+		tf_mdp.setPreferredSize(new Dimension(100,20));
+		
 		
 		this.add(lab_nom_user);
 		this.add(tf_nom_user);
@@ -36,7 +40,7 @@ public class PConnexion extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[1]);
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
 			}
 			
 		});

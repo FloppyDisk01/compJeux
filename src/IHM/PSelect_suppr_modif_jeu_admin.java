@@ -31,7 +31,7 @@ public class PSelect_suppr_modif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
 			}
 			
 		});
@@ -41,7 +41,7 @@ public class PSelect_suppr_modif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[7]);
 			}
 			
 		});
@@ -51,7 +51,7 @@ public class PSelect_suppr_modif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
 			}
 			
 		});

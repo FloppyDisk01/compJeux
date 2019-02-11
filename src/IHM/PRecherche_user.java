@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,6 +39,7 @@ public class PRecherche_user extends JPanel{
 		lab_nom=new JLabel("Nom : ");
 		lab_prix=new JLabel("Prix : ");
 		jtf_prix=new JTextField();
+		jtf_prix.setPreferredSize(new Dimension(70,20));
 		lab_genre=new JLabel("Genre : ");
 		lab_editeur=new JLabel("Editeur : ");
 		lab_plateforme=new JLabel("Plateforme : ");
@@ -62,7 +64,7 @@ public class PRecherche_user extends JPanel{
 		g.add(Jeu);
 		g.add(DLC);
 		
-		this.add(brecherche);
+		
 		this.add(lab_nom);
 		this.add(lab_prix);
 		this.add(jtf_prix);
@@ -76,9 +78,7 @@ public class PRecherche_user extends JPanel{
 		this.add(list_note);
 		this.add(Jeu);
 		this.add(DLC);
-		
-		
-
+		this.add(brecherche);
 	
 		
 		brecherche.addActionListener(new ActionListener() {
@@ -86,7 +86,7 @@ public class PRecherche_user extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[2]);
 			}
 			
 		});

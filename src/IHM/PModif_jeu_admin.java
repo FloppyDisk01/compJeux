@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -40,7 +41,7 @@ public class PModif_jeu_admin extends JPanel{
 	
 	public PModif_jeu_admin() {
 		bvalider=new JButton("Valider");
-		bvalider=new JButton("Annuler");
+		bannuler=new JButton("Annuler");
 		
 		lab_nom=new JLabel("Nom : ");
 		jtf_nom=new JTextField();
@@ -72,24 +73,30 @@ public class PModif_jeu_admin extends JPanel{
 		
 		this.add(lab_nom);
 		this.add(jtf_nom);
+		jtf_nom.setPreferredSize(new Dimension(100,20));
 		
 		this.add(lab_prix);
 		this.add(jtf_prix);
+		jtf_prix.setPreferredSize(new Dimension(70,20));
 		
 		this.add(lab_date);
 		this.add(jtf_date);
+		jtf_date.setPreferredSize(new Dimension(40,20));
 		
 		this.add(lab_genre);
 		this.add(list_genre);
 		this.add(jtf_genre);
+		jtf_genre.setPreferredSize(new Dimension(100,20));
 		
 		this.add(lab_editeur);
 		this.add(list_editeur);
 		this.add(jtf_editeur);
+		jtf_editeur.setPreferredSize(new Dimension(100,20));
 		
 		this.add(lab_plateforme);
 		this.add(list_plateforme);
 		this.add(jtf_plateforme);
+		jtf_plateforme.setPreferredSize(new Dimension(100,20));
 		
 		this.add(lab_note);
 		this.add(list_note);
@@ -102,7 +109,7 @@ public class PModif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
 			}
 			
 		});
@@ -112,7 +119,7 @@ public class PModif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
 			}
 			
 		});
