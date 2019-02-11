@@ -75,18 +75,18 @@ public class Jeu {
 	public String getNom() {
 		return nJeu;
 	}
-	public String getGenre() {
-		return nGenre.getName();
+	public Genre getGenre() {
+		return nGenre;
 	}
-	public String getPlateforme() {
-		return nPlateforme.getName();
+	public Plateforme getPlateforme() {
+		return nPlateforme;
 	}
-	public String getEditeur()
+	public Editeur getEditeur()
 	{
-		return nEditeur.getName();
+		return nEditeur;
 	}
-	public Double getNote() {
-		return note.getNote_sur_20()*note.getNbre_votants();
+	public Note getNote() {
+		return note;
 	}
 	public int getDate() {
 		return datesortie;
@@ -99,22 +99,27 @@ public class Jeu {
 	 * requete sql pour ajouter un jeu a la BDD
 	 */
 	public void ajoutJeu() {
-		//TODO 
-		
+		if(!Jeu_modele.estenBD(this)) {
+			Jeu_modele.ajoutJeu(this);	
+		}
 	}
 	
 	/**
 	 * requete sql pour remplacer ce jeu parun nouveau dans la BDD
 	 * @param nouvJeu jeu à remplacer dans la BDD
 	 */
-	public void mofifJeu(Jeu nouvJeu) {
-		//TODO 
+	public void mofifJeu(Jeu jeuAModif) {
+		if(Jeu_modele.estenBD(jeuAModif)) {
+			Jeu_modele.supprJeu(jeuAModif);
+			Jeu_modele.ajoutJeu(this);
+		}
 	}
 	
 	/**
 	 * requete sql pour supprimer le jeu a la BDD
 	 */
 	public void supprJeu() {
-		//TODO 
+		if(Jeu_modele.estenBD(this))
+			Jeu_modele.supprJeu(this);
 	}
 }
