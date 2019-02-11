@@ -61,11 +61,10 @@ public class Jeu_modele {
 	}
 	
 	public static Jeu getJeu(int id) {
-<<<<<<< HEAD
-		Jeu jv=new Jeu(null, 0, null, null, null, null, false);
-=======
-		Jeu jv=new Jeu(null, null, id, null, null, null, null, false);
->>>>>>> branch 'master' of https://github.com/FloppyDisk01/compJeux.git
+
+
+		Jeu jv=new Jeu(null, null, 0, null, null, null, null, false);
+
 		
 		return jv;
 	}

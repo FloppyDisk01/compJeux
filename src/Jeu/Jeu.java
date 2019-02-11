@@ -63,11 +63,9 @@ public class Jeu {
 	 */
 	public Jeu(Jeu nouvJeu) {
 		this.nJeu = nouvJeu.nJeu;
-<<<<<<< HEAD
 		this.datesortie=nouvJeu.datesortie;
-=======
+
 		this.nGenre = nouvJeu.nGenre;
->>>>>>> branch 'master' of https://github.com/FloppyDisk01/compJeux.git
 		this.nEditeur = nouvJeu.nEditeur;
 		this.nPlateforme = nouvJeu.nPlateforme;
 		this.note = nouvJeu.note;
@@ -89,14 +87,9 @@ public class Jeu {
 	{
 		return nEditeur;
 	}
-	public Note getNote() {
-		return note;
-	}
+
 	public int getDate() {
 		return datesortie;
-	}
-	public Double getPrix() {
-		return prix;
 	}
 	
 	/**
