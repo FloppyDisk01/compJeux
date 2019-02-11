@@ -1,5 +1,7 @@
 package Jeu;
 
+import Model.Jeu_modele;
+
 public class Jeu {
 	private String nJeu;
 	private Double prix;
@@ -68,6 +70,7 @@ public class Jeu {
 	 */
 	public void ajoutJeu() {
 		//TODO 
+		
 	}
 	
 	/**
