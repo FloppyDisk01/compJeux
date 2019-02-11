@@ -1,20 +1,26 @@
 package Comparateur;
 
-public class Comparateur {
-	private String name;
-	private int note;
+import Jeu.Jeu;
+
+public class Comparateur extends ComparateurAbstrait{
 	
-	public Comparateur(String nameSearch, int scoreSearch){
-		this.name = nameSearch;
-		this.note = scoreSearch; 
+	public Comparateur(Jeu jv){
+		this.jvrecherche=jv;
 		
 	}
 	
-	public void interrogateDB() {
+
+	@Override
+	public int comparer(Jeu jv) {
+		// TODO Auto-generated method stub
+		int score=0;
 		
+		
+		
+		return score;
 	}
 	
-	public void hierarchyDB() {
-		
-	}
+	public int minimum(int a, int b, int c) {                            
+        return Math.min(Math.min(a, b), c);                                      
+    } 
 }
