@@ -14,7 +14,20 @@ public class Comparateur extends ComparateurAbstrait{
 		// TODO Auto-generated method stub
 		Double score=0.0;
 		
-		
+		//ajout note jeu
+		score += jv.getNote().getNote_sur_20()*jv.getNote().getNbre_votants();
+		//nom
+		score += 100 * Distance(jv.getNom(), jvrecherche.getNom());
+		//genre
+		score += 80 * Distance(jv.getGenre().getName(), jvrecherche.getGenre().getName());
+		//prix
+		score += 80*(1-(jv.getPrix()-jvrecherche.getPrix()));
+		//date sortie
+		score += 50*(1-(jv.getDate()-jvrecherche.getDate()));
+		//plateforme
+		score += 30 * Distance(jv.getPlateforme().getName(), jvrecherche.getPlateforme().getName());
+		//Editeur
+		score += 30 * Distance(jv.getEditeur().getName(), jvrecherche.getEditeur().getName());
 		
 		return score.intValue();
 	}
