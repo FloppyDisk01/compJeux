@@ -59,7 +59,7 @@ public class Jeu_modele {
 	}
 	
 	public static Jeu getJeu(int id) {
-		Jeu jv=new Jeu(null, null, null, id, null, false, null);
+		Jeu jv=new Jeu(null, id, null, null, null, null, false);
 		
 		return jv;
 	}

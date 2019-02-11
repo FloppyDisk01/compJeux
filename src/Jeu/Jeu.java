@@ -5,9 +5,10 @@ import Model.Jeu_modele;
 public class Jeu {
 	private String nJeu;
 	private Double prix;
+	private int datesortie;
 	private Editeur nEditeur;
 	private Plateforme nPlateforme;
-	private int note;
+	private Note note;
 	private String lienBoutique;
 	boolean isDLC;
 	
@@ -22,11 +23,12 @@ public class Jeu {
 	 * @param URL lien vers le jeu en boutique
 	 */
 	
-	public Jeu(String nomJ, Editeur nomE, Plateforme nomP, int noteVal, Double prixVal, boolean DLC, String URL) {
+	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC, String URL) {
 		this.nJeu = nomJ;
+		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
-		this.note = noteVal;
+		this.note = note;
 		this.prix = prixVal;
 		this.lienBoutique = URL;
 		this.isDLC = DLC;
@@ -41,11 +43,12 @@ public class Jeu {
 	 * @param prixVal
 	 * @param DLC
 	 */
-	public Jeu(String nomJ, Editeur nomE, Plateforme nomP, int noteVal, Double prixVal, boolean DLC) {
+	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC) {
 		this.nJeu = nomJ;
+		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
-		this.note = noteVal;
+		this.note = note;
 		this.prix = prixVal;
 		this.lienBoutique = null;
 		this.isDLC = DLC;
