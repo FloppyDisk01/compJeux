@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -45,5 +46,8 @@ public class Fenetre extends JFrame{
 		
 		this.getContentPane().add(content, BorderLayout.CENTER);
 		this.setVisible(true);
+		
+		
+		
 	}
 }

@@ -4,40 +4,61 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import Model.Utilisateur_modele;
+
 public class Utilisateur {
-	public static boolean estenBD() {
+	
+	private String nom;
+	private static String mdp;
+	
+	public Utilisateur(String nom, String mdp) {
+		super();
+		this.nom = nom;
+		Utilisateur.mdp = mdp;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdp) {
+		Utilisateur.mdp = mdp;
+	}
+
+	public boolean estenBD() {
+		if(sha_1(mdp).equals( Utilisateur_modele.getMdp(this) ))
 		return true;
+		else return false;
 	}
 	
-	public static boolean estAdmin(String login, String mdp) {
-		return true;
+	public  boolean estAdmin() {
+		if(Utilisateur_modele.estAdmin(this))
+			return true;
+		else return false;
 	}
 	
 	public static String sha_1(String s) {
-		MessageDigest md = null;
-		 
-        try {
-            md = MessageDigest.getInstance("SHA-1"); // SHA-1 generator instance
-        } catch(NoSuchAlgorithmException e) {
-            return "";
+		MessageDigest mDigest=null;
+		try {
+			mDigest = MessageDigest.getInstance("SHA1");
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        byte[] result = mDigest.digest(s.getBytes());
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < result.length; i++) {
+            sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
         }
- 
-        try {
-            //8859_1 ou UTF-8
-            md.update(s.getBytes("UTF-8")); // Message summary generation
-        } catch(UnsupportedEncodingException e) {
-            return "";
-        }
- 
-        byte raw[] = md.digest(); // Message summary reception
- 
-        try{
-            String hash = new String(org.apache.commons.codec.binary.Base64.encodeBase64(raw),"UTF-8");
-            //String hash = new String(raw);
-            return hash;
-        }
-        catch (UnsupportedEncodingException use){
-            return "";
-        }
+         
+        return sb.toString();
 	}
 }

@@ -6,8 +6,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import Comparateur.Utilisateur;
 
 @SuppressWarnings("serial")
 public class PConnexion extends JPanel{
@@ -16,6 +19,7 @@ public class PConnexion extends JPanel{
 	private JLabel lab_mdp;
 	private JTextField tf_nom_user;
 	private JTextField tf_mdp;
+	
 	
 	
 	public PConnexion() {
@@ -36,14 +40,31 @@ public class PConnexion extends JPanel{
 		this.add(bconnexion);
 		
 		bconnexion.addActionListener(new ActionListener() {
-
+			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
+				String login=tf_nom_user.getText();
+				String mdp=tf_mdp.getText();
+				
+				Utilisateur u=new Utilisateur(login,mdp);
+				
+				if(u.estenBD() && u.estAdmin())
+					Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
+				else if(u.estenBD() && !(u.estAdmin()))
+					Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[1]);
+				else{
+					
+					JOptionPane.showMessageDialog(PConnexion.this,
+							"Nom d'utilisateur ou mdp faux","Erreur",
+							JOptionPane.ERROR_MESSAGE);
+				}
+					
 			}
 			
 		});
+		
+		
 		
 	}
 }
