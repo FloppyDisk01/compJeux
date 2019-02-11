@@ -105,7 +105,7 @@ public class Jeu {
 	 * requete sql pour remplacer ce jeu parun nouveau dans la BDD
 	 * @param nouvJeu jeu à remplacer dans la BDD
 	 */
-	public void mofifJeu(Jeu jeuAModif) {
+	public void modifJeu(Jeu jeuAModif) {
 		if(Jeu_modele.estenBD(jeuAModif)) {
 			Jeu_modele.supprJeu(jeuAModif);
 			Jeu_modele.ajoutJeu(this);
