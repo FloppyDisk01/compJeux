@@ -13,11 +13,24 @@ public class Comparateur extends ComparateurAbstrait{
 	@Override
 	public int comparer(Jeu jv) {
 		// TODO Auto-generated method stub
-		int score=0;
+		Double score=0.0;
 		
+		//ajout note jeu
+		score += jv.getNote();
+		//nom
+		score += 100 * Distance(jv.getNom(), jvrecherche.getNom());
+		//genre
+		score += 80 * Distance(jv.getGenre(), jvrecherche.getGenre());
+		//prix
+		score += 80*(1-(jv.getPrix()-jvrecherche.getPrix()));
+		//date sortie
+		score += 50*(1-(jv.getDate()-jvrecherche.getDate()));
+		//plateforme
+		score += 30 * Distance(jv.getPlateforme(), jvrecherche.getPlateforme());
+		//Editeur
+		score += 30 * Distance(jv.getEditeur(), jvrecherche.getEditeur());
 		
-		
-		return score;
+		return score.intValue();
 	}
 	
 	public int minimum(int a, int b, int c) {                            

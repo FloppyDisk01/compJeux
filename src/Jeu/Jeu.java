@@ -4,6 +4,7 @@ import Model.Jeu_modele;
 
 public class Jeu {
 	private String nJeu;
+	private Genre nGenre;
 	private Double prix;
 	private int datesortie;
 	private Editeur nEditeur;
@@ -23,8 +24,9 @@ public class Jeu {
 	 * @param URL lien vers le jeu en boutique
 	 */
 	
-	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC, String URL) {
+	public Jeu(String nomJ, Genre g, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC, String URL) {
 		this.nJeu = nomJ;
+		this.nGenre = g;
 		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
@@ -43,8 +45,9 @@ public class Jeu {
 	 * @param prixVal
 	 * @param DLC
 	 */
-	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC) {
+	public Jeu(String nomJ, Genre g, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC) {
 		this.nJeu = nomJ;
+		this.nGenre = g;
 		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
@@ -60,12 +63,36 @@ public class Jeu {
 	 */
 	public Jeu(Jeu nouvJeu) {
 		this.nJeu = nouvJeu.nJeu;
+		this.nGenre = nouvJeu.nGenre;
 		this.nEditeur = nouvJeu.nEditeur;
 		this.nPlateforme = nouvJeu.nPlateforme;
 		this.note = nouvJeu.note;
 		this.prix = nouvJeu.prix;
 		this.lienBoutique = nouvJeu.lienBoutique;
 		this.isDLC = nouvJeu.isDLC; 
+	}
+	
+	public String getNom() {
+		return nJeu;
+	}
+	public String getGenre() {
+		return nGenre.getName();
+	}
+	public String getPlateforme() {
+		return nPlateforme.getName();
+	}
+	public String getEditeur()
+	{
+		return nEditeur.getName();
+	}
+	public Double getNote() {
+		return note.getNote_sur_20()*note.getNbre_votants();
+	}
+	public int getDate() {
+		return datesortie;
+	}
+	public Double getPrix() {
+		return prix;
 	}
 	
 	/**
