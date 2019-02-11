@@ -34,6 +34,14 @@ public class Fenetre extends JFrame{
 		
 		content.setLayout(cl);
 		content.add(connexion,listcontent[0]);
+		content.add(recherche_user,listcontent[1]);
+		content.add(resultats,listcontent[2]);
+		content.add(fiche_jeu,listcontent[3]);
+		content.add(menu_admin,listcontent[4]);
+		content.add(ajout_jeu_admin,listcontent[5]);
+		content.add(select_suppr_modif_jeu_admin,listcontent[6]);
+		content.add(modif_jeu_admin,listcontent[7]);
+		
 		
 		this.getContentPane().add(content, BorderLayout.CENTER);
 		this.setVisible(true);
