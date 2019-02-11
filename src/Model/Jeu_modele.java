@@ -20,14 +20,16 @@ public class Jeu_modele {
 	}
 	
 	public static void supprJeu(Jeu jv) {
-		/*Connection cn=ConnexionBD.get_instance();
+		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
-			String sql="INSERT INTO Jeu VALUES (1,'nomediteur')";
+			String sql="DELETE FROM Jeu WHERE Id_jeu="+
+			Integer.toString(getId(jv));
 			st.executeUpdate(sql);
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}catch (ClassNotFoundException e) {
@@ -41,7 +43,7 @@ public class Jeu_modele {
 				e.printStackTrace();
 			}
 		}
-		tmJeu.remove(jv);*/
+		tmJeu.remove(jv);
 	}
 	
 	public static ArrayList<Jeu> getJeuTous(){
@@ -59,20 +61,33 @@ public class Jeu_modele {
 	}
 	
 	public static Jeu getJeu(int id) {
-		Jeu jv=new Jeu(null, null, id, null, null, null, null, false);
+
+
+		Jeu jv=new Jeu(null, null, 0, null, null, null, null, false);
+
 		
 		return jv;
 	}
 	
 	
 	public static void ajoutJeu(Jeu jv) {
+		tmJeu.put(tmJeu.lastKey()+1, jv);
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
+		int estdlc=(jv.isDLC()) ? 1 : 0;
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
-			String sql="INSERT INTO Jeu VALUES (1,'nomediteur')";
+			String sql="INSERT INTO Jeu VALUES ("+
+					Integer.toString(tmJeu.lastKey()+1 )
+					+",'"+jv.getnJeu()+"',"+
+					Double.toString(jv.getPrix())+","+
+					Integer.toString(jv.getDatesortie())+","+
+					Integer.toString(estdlc)+","+
+					Integer.toString(Note_modele.getId(jv.getNote()))+","+
+					Integer.toString(Editeur_modele.getId(jv.getnEditeur()))+","+")";
 			st.executeUpdate(sql);
 		}catch(SQLException e) {
 			e.printStackTrace();

@@ -63,6 +63,8 @@ public class Jeu {
 	 */
 	public Jeu(Jeu nouvJeu) {
 		this.nJeu = nouvJeu.nJeu;
+		this.datesortie=nouvJeu.datesortie;
+
 		this.nGenre = nouvJeu.nGenre;
 		this.nEditeur = nouvJeu.nEditeur;
 		this.nPlateforme = nouvJeu.nPlateforme;
@@ -85,14 +87,9 @@ public class Jeu {
 	{
 		return nEditeur;
 	}
-	public Note getNote() {
-		return note;
-	}
+
 	public int getDate() {
 		return datesortie;
-	}
-	public Double getPrix() {
-		return prix;
 	}
 	
 	/**
@@ -122,4 +119,70 @@ public class Jeu {
 		if(Jeu_modele.estenBD(this))
 			Jeu_modele.supprJeu(this);
 	}
+
+	public String getnJeu() {
+		return nJeu;
+	}
+
+	public void setnJeu(String nJeu) {
+		this.nJeu = nJeu;
+	}
+
+	public Double getPrix() {
+		return prix;
+	}
+
+	public void setPrix(Double prix) {
+		this.prix = prix;
+	}
+
+	public int getDatesortie() {
+		return datesortie;
+	}
+
+	public void setDatesortie(int datesortie) {
+		this.datesortie = datesortie;
+	}
+
+	public Editeur getnEditeur() {
+		return nEditeur;
+	}
+
+	public void setnEditeur(Editeur nEditeur) {
+		this.nEditeur = nEditeur;
+	}
+
+	public Plateforme getnPlateforme() {
+		return nPlateforme;
+	}
+
+	public void setnPlateforme(Plateforme nPlateforme) {
+		this.nPlateforme = nPlateforme;
+	}
+
+	public Note getNote() {
+		return note;
+	}
+
+	public void setNote(Note note) {
+		this.note = note;
+	}
+
+	public String getLienBoutique() {
+		return lienBoutique;
+	}
+
+	public void setLienBoutique(String lienBoutique) {
+		this.lienBoutique = lienBoutique;
+	}
+
+	public boolean isDLC() {
+		return isDLC;
+	}
+
+	public void setDLC(boolean isDLC) {
+		this.isDLC = isDLC;
+	}
+	
+	
 }
