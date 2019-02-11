@@ -14,6 +14,9 @@ public class Editeur {
 		this.nEditeur = nom; 
 	}
 	
+	public String getName() {
+		return nEditeur;
+	}
 	/**
 	 * remplis listeEditeur grace a editeurModele
 	 * @return liste complète des éditeurs

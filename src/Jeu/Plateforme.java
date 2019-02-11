@@ -9,7 +9,9 @@ public class Plateforme {
 	public Plateforme(String nomP) {
 		this.nPlateforme = nomP; 
 	}
-	
+	public String getName() {
+		return nPlateforme;
+	}
 	/**
 	 * remplis listePlateforme grace a plateformeModele
 	 * @return liste complète des plateformes

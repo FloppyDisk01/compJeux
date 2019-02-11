@@ -4,6 +4,7 @@ import Model.Jeu_modele;
 
 public class Jeu {
 	private String nJeu;
+	private Genre nGenre;
 	private Double prix;
 	private int datesortie;
 	private Editeur nEditeur;
@@ -23,8 +24,9 @@ public class Jeu {
 	 * @param URL lien vers le jeu en boutique
 	 */
 	
-	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC, String URL) {
+	public Jeu(String nomJ, Genre g, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC, String URL) {
 		this.nJeu = nomJ;
+		this.nGenre = g;
 		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
@@ -43,8 +45,9 @@ public class Jeu {
 	 * @param prixVal
 	 * @param DLC
 	 */
-	public Jeu(String nomJ, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC) {
+	public Jeu(String nomJ, Genre g, int date, Editeur nomE, Plateforme nomP, Note note, Double prixVal, boolean DLC) {
 		this.nJeu = nomJ;
+		this.nGenre = g;
 		this.datesortie=date;
 		this.nEditeur = nomE;
 		this.nPlateforme = nomP;
@@ -60,7 +63,11 @@ public class Jeu {
 	 */
 	public Jeu(Jeu nouvJeu) {
 		this.nJeu = nouvJeu.nJeu;
+<<<<<<< HEAD
 		this.datesortie=nouvJeu.datesortie;
+=======
+		this.nGenre = nouvJeu.nGenre;
+>>>>>>> branch 'master' of https://github.com/FloppyDisk01/compJeux.git
 		this.nEditeur = nouvJeu.nEditeur;
 		this.nPlateforme = nouvJeu.nPlateforme;
 		this.note = nouvJeu.note;
@@ -69,27 +76,55 @@ public class Jeu {
 		this.isDLC = nouvJeu.isDLC; 
 	}
 	
+	public String getNom() {
+		return nJeu;
+	}
+	public Genre getGenre() {
+		return nGenre;
+	}
+	public Plateforme getPlateforme() {
+		return nPlateforme;
+	}
+	public Editeur getEditeur()
+	{
+		return nEditeur;
+	}
+	public Note getNote() {
+		return note;
+	}
+	public int getDate() {
+		return datesortie;
+	}
+	public Double getPrix() {
+		return prix;
+	}
+	
 	/**
 	 * requete sql pour ajouter un jeu a la BDD
 	 */
 	public void ajoutJeu() {
-		//TODO 
-		
+		if(!Jeu_modele.estenBD(this)) {
+			Jeu_modele.ajoutJeu(this);	
+		}
 	}
 	
 	/**
 	 * requete sql pour remplacer ce jeu parun nouveau dans la BDD
 	 * @param nouvJeu jeu à remplacer dans la BDD
 	 */
-	public void mofifJeu(Jeu nouvJeu) {
-		//TODO 
+	public void mofifJeu(Jeu jeuAModif) {
+		if(Jeu_modele.estenBD(jeuAModif)) {
+			Jeu_modele.supprJeu(jeuAModif);
+			Jeu_modele.ajoutJeu(this);
+		}
 	}
 	
 	/**
 	 * requete sql pour supprimer le jeu a la BDD
 	 */
 	public void supprJeu() {
-		//TODO 
+		if(Jeu_modele.estenBD(this))
+			Jeu_modele.supprJeu(this);
 	}
 
 	public String getnJeu() {

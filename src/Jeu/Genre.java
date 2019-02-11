@@ -10,6 +10,9 @@ public class Genre {
 		this.nGenre = nomG; 
 	}
 	
+	public String getName() {
+		return nGenre;
+	}
 	/**
 	 * remplis listeGenre grace a genreModele
 	 * @return liste complète des genres
