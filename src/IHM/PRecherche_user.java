@@ -88,6 +88,7 @@ public class PRecherche_user extends JPanel{
 		
 		
 		this.add(lab_nom);
+		this.add(jtf_nom);
 		this.add(lab_prix);
 		this.add(jtf_prix);
 		this.add(lab_genre);

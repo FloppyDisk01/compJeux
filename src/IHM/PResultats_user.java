@@ -26,7 +26,10 @@ public class PResultats_user extends JPanel{
 		
 		Collections.sort(al, comp);
 		
+		String[] colonnes= {"Nom","Genre","Prix","date","editeur","plateforme","Note","Lien"};
 		jeux=new JTable();
+		
+		
 		plus_infos=new JButton("+ d'infos");
 		nouvelle_recherche=new JButton("Nouvelle Recherche");
 		

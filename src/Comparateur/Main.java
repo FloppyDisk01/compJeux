@@ -10,9 +10,17 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Fenetre fen=new Fenetre();
+		
+		Jeu_modele j=new Jeu_modele();
 		TreeMap<Integer,Jeu> tmJeu= Jeu_modele.getTmJeu();
-		tmJeu.put(1, new Jeu(null, null, 0, null, null, null, null, false, null));
+		
+		Jeu j1=new Jeu(null, null, 0, null, null, null, null, false, null);
+		
+		
+		tmJeu.put(1,j1);
+		Fenetre fen=new Fenetre();
+		
+		
 		
 		//Note_modele.ajoutNote(new Note(0,0));
 	}
