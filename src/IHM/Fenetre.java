@@ -18,19 +18,30 @@ public class Fenetre extends JFrame{
 			"Modif_jeu"
 	};
 	
+	
+	PConnexion connexion;
+	PAjout_jeu_admin ajout_jeu_admin;
+	PFiche_jeu fiche_jeu;
+	PMenu_admin menu_admin;
+	PModif_jeu_admin modif_jeu_admin;
+	PRecherche_user recherche_user;
+	static PResultats_user resultats;
+	static PSelect_suppr_modif_jeu_admin select_suppr_modif_jeu_admin;
+	
+	
 	public Fenetre() {
 		this.setTitle("Comparateur");
 		this.setSize(500, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		PConnexion connexion=new PConnexion();
-		PAjout_jeu_admin ajout_jeu_admin=new PAjout_jeu_admin();
-		PFiche_jeu fiche_jeu=new PFiche_jeu();
-		PMenu_admin menu_admin=new PMenu_admin();
-		PModif_jeu_admin modif_jeu_admin=new PModif_jeu_admin();
-		PRecherche_user recherche_user=new PRecherche_user();
-		PResultats_user resultats=new PResultats_user();
-		PSelect_suppr_modif_jeu_admin select_suppr_modif_jeu_admin=
+		connexion=new PConnexion();
+		ajout_jeu_admin=new PAjout_jeu_admin();
+		fiche_jeu=new PFiche_jeu();
+		menu_admin=new PMenu_admin();
+		modif_jeu_admin=new PModif_jeu_admin();
+		recherche_user=new PRecherche_user();
+		resultats=new PResultats_user();
+		select_suppr_modif_jeu_admin=
 				new PSelect_suppr_modif_jeu_admin();
 		
 		content.setLayout(cl);
@@ -49,5 +60,8 @@ public class Fenetre extends JFrame{
 		
 		
 		
+		
 	}
+	
+	
 }

@@ -7,10 +7,15 @@ import java.sql.Statement;
 import java.util.TreeMap;
 
 import Comparateur.Utilisateur;
+import Jeu.Jeu;
 
 public class Utilisateur_modele {
 	
 	public static TreeMap<Integer,Utilisateur> tmUtilisateur;
+	
+	public Utilisateur_modele(){
+        tmUtilisateur = new TreeMap<Integer,Utilisateur>();
+    }
 	
 	public static String getMdp(Utilisateur u) {
 		String mdp=null;
@@ -133,4 +138,14 @@ public class Utilisateur_modele {
 		}
 		return estadmin;
 	}
+
+	public static TreeMap<Integer, Utilisateur> getTmUtilisateur() {
+		return tmUtilisateur;
+	}
+
+	public static void setTmUtilisateur(TreeMap<Integer, Utilisateur> tmUtilisateur) {
+		Utilisateur_modele.tmUtilisateur = tmUtilisateur;
+	}
+	
+	
 }

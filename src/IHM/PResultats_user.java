@@ -8,6 +8,7 @@ import java.util.Collections;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import Comparateur.Comparateur;
 import Jeu.Jeu;
@@ -20,15 +21,49 @@ public class PResultats_user extends JPanel{
 	private JButton plus_infos;
 	private JButton nouvelle_recherche;
 	private static Jeu jeuchoisi;
+	private static ArrayList<Jeu> al;
 	
 	public PResultats_user() {
+		
 		Comparateur comp=PRecherche_user.getComp();
-		ArrayList<Jeu> al=Jeu_modele.getJeuTous();
+		al=Jeu_modele.getJeuTous();
 		
-		Collections.sort(al, comp);
 		
-		String[] colonnes= {"Nom","Genre","Prix","date","editeur","plateforme","Note","Lien"};
-		jeux=new JTable();
+		if(comp!=null) {
+			System.out.println("aaa");
+			Collections.sort(al, comp);
+		}
+		
+		
+		
+		String[] colonnes= {"Nom","Genre","Prix","date",
+				"editeur","plateforme","Note",""
+				};
+		
+		DefaultTableModel tableModel = new DefaultTableModel(colonnes, 0);
+		
+		for (int i = 0; i < al.size(); i++){
+			   String nom = al.get(i).getNom();
+			   String genre_nom = al.get(i).getGenre().getName();
+			   
+			   double prix = al.get(i).getPrix();
+			   int date = al.get(i).getDate();
+			   String editeur_nom = al.get(i).getEditeur().getName();
+			   String plateforme_nom = al.get(i).getPlateforme().getName();
+			   double note_20 = al.get(i).getNote().getNote_sur_20();
+			   JButton plus_infos2 = new JButton("plus_infos");
+			 
+			 
+
+			   Object[] data = {nom, genre_nom, prix, date, editeur_nom,
+					   			plateforme_nom , note_20,plus_infos2};
+
+			   tableModel.addRow(data);
+
+			}
+		
+		jeux=new JTable(tableModel);
+		
 		
 		
 		plus_infos=new JButton("+ d'infos");
@@ -58,4 +93,14 @@ public class PResultats_user extends JPanel{
 			
 		});
 	}
+
+	public static ArrayList<Jeu> getAl() {
+		return al;
+	}
+
+	public static void setAl(ArrayList<Jeu> al) {
+		PResultats_user.al = al;
+	}
+	
+	
 }

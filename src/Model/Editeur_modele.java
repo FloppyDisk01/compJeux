@@ -18,6 +18,18 @@ import Jeu.Jeu;
 public class Editeur_modele {
 	static TreeMap<Integer,Editeur> tmEditeur;
 	
+	public Editeur_modele(){
+        tmEditeur = new TreeMap<Integer,Editeur>();
+    }
+	
+	public static TreeMap<Integer, Editeur> getTmEditeur() {
+		return tmEditeur;
+	}
+
+	public static void setTmEditeur(TreeMap<Integer, Editeur> tmEditeur) {
+		Editeur_modele.tmEditeur = tmEditeur;
+	}
+
 	public static int getId(Editeur ed) {
 		
 		for(Entry<Integer, Editeur> entry : tmEditeur.entrySet()){
@@ -75,7 +87,7 @@ public class Editeur_modele {
 			st=cn.createStatement();
 			String sql;
 			
-				sql="SELECT * FROM Editeur";
+			sql="SELECT * FROM Editeur";
 			
 			
 			
@@ -85,7 +97,7 @@ public class Editeur_modele {
 				
 				
 				
-				if(Integer.toString(getId(ed)).equals(result.getString("Id_editeur")) ){
+				if(getId(ed)==result.getInt("Id_editeur") ){
 					
 					estbd=true;
 					
@@ -118,11 +130,15 @@ public class Editeur_modele {
 	public static void ajoutEditeur(Editeur ed) {
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
+		
+		tmEditeur.put(tmEditeur.size()+1, ed);
+		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
-			String sql="INSERT INTO Editeur VALUES ("+getId(ed)+",'"+ed.getName()+"')";
+			String sql="INSERT INTO Editeur VALUES ("+
+			Integer.toString(tmEditeur.size())+",'"+ed.getName()+"')";
 			st.executeUpdate(sql);
 		}catch(SQLException e) {
 			e.printStackTrace();

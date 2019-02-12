@@ -12,6 +12,14 @@ import Jeu.Jeu;
 public class Reservation_modele {
 	public static TreeMap<Integer,Integer> tmReservation;
 	
+	public Reservation_modele(){
+        tmReservation = new TreeMap<Integer,Integer>();
+    }
+	
+	public static void setTmReservation(TreeMap<Integer, Integer> tmReservation) {
+		Reservation_modele.tmReservation = tmReservation;
+	}
+
 	public static boolean estenBD(int Id_jeu, int Id_utilisateur) {
 		boolean estenbd=false;
 		

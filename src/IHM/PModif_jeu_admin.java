@@ -137,6 +137,13 @@ public class PModif_jeu_admin extends JPanel{
 		this.add(jtf_url);
 		jtf_plateforme.setPreferredSize(new Dimension(100,20));
 		
+		jtf_note.setPreferredSize(new Dimension(100,20));
+		jtf_note.setPreferredSize(new Dimension(100,20));
+		jtf_nb_votants.setPreferredSize(new Dimension(100,20));
+		jtf_url.setPreferredSize(new Dimension(100,20));
+		
+		this.add(Jeu);
+		this.add(DLC);
 		this.add(bannuler);
 		this.add(bvalider);
 		
@@ -145,7 +152,7 @@ public class PModif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				String nom=jtf_note.getText();
+				String nom=jtf_nom.getText();
 				double prix=Double.parseDouble(jtf_prix.getText());
 				int date =Integer.parseInt(jtf_date.getText());
 				double note =Double.parseDouble(jtf_note.getText());

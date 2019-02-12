@@ -1,5 +1,6 @@
 package Jeu;
 
+import Model.Editeur_modele;
 import Model.Jeu_modele;
 
 public class Jeu {
@@ -97,6 +98,11 @@ public class Jeu {
 	 */
 	public void ajoutJeu() {
 		if(!(Jeu_modele.estenBD(this))) {
+			this.getEditeur().ajoutBDD();
+			
+			this.getPlateforme().ajoutBDD();
+			this.getNote().ajoutBDD();
+			this.getGenre().ajoutBDD();
 			Jeu_modele.ajoutJeu(this);	
 		}
 	}
@@ -116,8 +122,12 @@ public class Jeu {
 	 * requete sql pour supprimer le jeu a la BDD
 	 */
 	public void supprJeu() {
-		if(Jeu_modele.estenBD(this))
+		if(Jeu_modele.estenBD(this)) {
+			System.out.println("supprJeudansjeu");
 			Jeu_modele.supprJeu(this);
+			
+		}
+			
 	}
 
 	public String getnJeu() {
@@ -184,5 +194,19 @@ public class Jeu {
 		this.isDLC = isDLC;
 	}
 	
+	String toString(Jeu jv) {
+		return "Nom : "+jv.getNom()+"\n"+
+			"Prix : "+Double.toString(jv.getPrix())+"\n"+
+			"Date : "+Integer.toString(
+					jv.getDate())+"\n"+
+			"Editeur : "+jv.getEditeur().getName()+"\n"+
+			"Genre : "+jv.getGenre().getName()+"\n"+
+			"Plateforme : "+jv.getPlateforme().getName()+"\n"+
+			"Note : "+Double.toString(jv.getNote().getNote_sur_20())+"\n"+
+			"Nombre votants : "+Integer.toString(
+					jv.getNote().getNbre_votants())+"\n"+
+			"URL :"+ jv.getLienBoutique()+"\n"+
+			"EstDLC : "+Boolean.toString(jv.isDLC);
 	
+	}
 }

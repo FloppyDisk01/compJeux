@@ -2,6 +2,9 @@ package Jeu;
 
 import java.util.ArrayList;
 
+import Model.Genre_modele;
+import Model.Plateforme_modele;
+
 public class Plateforme {
 	private ArrayList<Plateforme> listePlateforme;
 	private String nPlateforme;
@@ -26,5 +29,6 @@ public class Plateforme {
 	 */
 	public void ajoutBDD() {
 		//TODO
+		Plateforme_modele.ajoutPlateforme(this);
 	}
 }

@@ -1,5 +1,8 @@
 package Jeu;
 
+import Model.Genre_modele;
+import Model.Note_modele;
+
 public class Note {
 	private double note_sur_20;
 	private int nbre_votants;
@@ -25,5 +28,13 @@ public class Note {
 		this.nbre_votants = nbre_votants;
 	}
 	
+	public void ajoutBDD() {
+		//TODO
+		Note_modele.ajoutNote(this);
+	}
 	
+	public String toString() {
+		return Double.toString(getNote_sur_20())+","
+				+Integer.toString(getNbre_votants());
+	}
 }

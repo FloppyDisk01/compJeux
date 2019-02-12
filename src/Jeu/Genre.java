@@ -2,6 +2,9 @@ package Jeu;
 
 import java.util.ArrayList;
 
+import Model.Editeur_modele;
+import Model.Genre_modele;
+
 public class Genre {
 	private ArrayList<Genre> listeGenre;
 	private String nGenre;
@@ -20,5 +23,14 @@ public class Genre {
 	public ArrayList<Genre> getAllGenre() {
 		//TODO
 		return listeGenre;
+	}
+	
+	public void ajoutBDD() {
+		//TODO
+		Genre_modele.ajoutGenre(this);
+	}
+	
+	String toString(Genre g) {
+		return g.getName();
 	}
 }

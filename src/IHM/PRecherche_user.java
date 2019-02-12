@@ -35,6 +35,8 @@ public class PRecherche_user extends JPanel{
 	private JTextField jtf_prix;
 	private JLabel lab_note;
 	private JTextField jtf_note;
+	private JLabel lab_date;
+	private JTextField jtf_date;
 	
 	private JLabel lab_nb_votants;
 	private JTextField jtf_nb_votants;
@@ -46,6 +48,7 @@ public class PRecherche_user extends JPanel{
 	private static Comparateur comp;
 	
 	
+	
 	public PRecherche_user() {
 		brecherche = new JButton("Recherche");
 		
@@ -53,6 +56,10 @@ public class PRecherche_user extends JPanel{
 		lab_prix=new JLabel("Prix : ");
 		jtf_prix=new JTextField();
 		jtf_nom=new JTextField();
+		
+		lab_date=new JLabel("Date : ");
+		jtf_date=new JTextField();
+		jtf_nom.setPreferredSize(new Dimension(70,20));
 		
 		jtf_nom.setPreferredSize(new Dimension(70,20));
 		jtf_prix.setPreferredSize(new Dimension(70,20));
@@ -79,6 +86,7 @@ public class PRecherche_user extends JPanel{
 		jtf_genre.setPreferredSize(new Dimension(70,20));
 		jtf_plateforme.setPreferredSize(new Dimension(70,20));
 		jtf_editeur.setPreferredSize(new Dimension(70,20));
+		jtf_date.setPreferredSize(new Dimension(70,20));
 		
 		g=new ButtonGroup();
 		DLC=new JRadioButton("DLC");
@@ -91,6 +99,9 @@ public class PRecherche_user extends JPanel{
 		this.add(jtf_nom);
 		this.add(lab_prix);
 		this.add(jtf_prix);
+		this.add(lab_date);
+		this.add(jtf_date);
+		
 		this.add(lab_genre);
 		this.add(jtf_genre);
 		this.add(lab_editeur);
@@ -115,7 +126,7 @@ public class PRecherche_user extends JPanel{
 				
 				Jeu jvrecherche=new Jeu(jtf_nom.getText(),
 						new Genre(jtf_genre.getText()),
-						1900,
+						Integer.parseInt(jtf_date.getText()),
 						new Editeur(jtf_editeur.getText()),
 						new Plateforme(jtf_plateforme.getText()),
 						new Note(Double.parseDouble(jtf_note.getText()),
@@ -123,6 +134,9 @@ public class PRecherche_user extends JPanel{
 						,
 						Double.parseDouble(jtf_prix.getText()),
 						DLC.isSelected(),"URL");
+				
+				
+				
 				comp=new Comparateur(jvrecherche);
 				
 				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[2]);

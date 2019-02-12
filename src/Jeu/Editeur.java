@@ -2,6 +2,8 @@ package Jeu;
 
 import java.util.ArrayList;
 
+import Model.Editeur_modele;
+
 public class Editeur {
 	private ArrayList<Editeur> listeEditeur;
 	private String nEditeur;
@@ -31,6 +33,10 @@ public class Editeur {
 	 */
 	public void ajoutBDD() {
 		//TODO
+		Editeur_modele.ajoutEditeur(this);
 	}
 
+	String toString(Editeur ed) {
+		return ed.getName();
+	}
 }

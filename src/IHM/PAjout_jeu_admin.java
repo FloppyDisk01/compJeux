@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -17,6 +18,7 @@ import Jeu.Editeur;
 import Jeu.Genre;
 import Jeu.Note;
 import Jeu.Plateforme;
+import Model.Jeu_modele;
 
 @SuppressWarnings("serial")
 public class PAjout_jeu_admin extends JPanel{
@@ -53,6 +55,7 @@ public class PAjout_jeu_admin extends JPanel{
 	private ButtonGroup g;
 	private JRadioButton DLC;
 	private JRadioButton Jeu;
+	
 	
 	
 	
@@ -137,6 +140,13 @@ public class PAjout_jeu_admin extends JPanel{
 		this.add(jtf_url);
 		jtf_plateforme.setPreferredSize(new Dimension(100,20));
 		
+		jtf_note.setPreferredSize(new Dimension(100,20));
+		jtf_nb_votants.setPreferredSize(new Dimension(100,20));
+		jtf_url.setPreferredSize(new Dimension(100,20));
+		
+		this.add(DLC);
+		this.add(Jeu);
+		
 		this.add(bannuler);
 		this.add(bvalider);
 		
@@ -145,7 +155,7 @@ public class PAjout_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				String nom=jtf_note.getText();
+				String nom=jtf_nom.getText();
 				double prix=Double.parseDouble(jtf_prix.getText());
 				int date =Integer.parseInt(jtf_date.getText());
 				double note =Double.parseDouble(jtf_note.getText());
@@ -162,9 +172,16 @@ public class PAjout_jeu_admin extends JPanel{
 				Jeu jvajout=new Jeu(nom, genre,date,editeur,
 						plateforme, no, prix, estDLC,url);
 				
+				
+				
 				jvajout.ajoutJeu();
 				
+				JOptionPane.showMessageDialog(PAjout_jeu_admin.this,
+						"Jeu ajouté !","Info",
+						JOptionPane.INFORMATION_MESSAGE);
 				
+				Fenetre.select_suppr_modif_jeu_admin.revalidate();
+				Fenetre.resultats.revalidate();
 				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
 			}
 			

@@ -25,6 +25,7 @@ public class Jeu_modele {
 	}
 	
 	public static void supprJeu(Jeu jv) {
+		System.out.println("suppr");
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
 		try {
@@ -51,6 +52,43 @@ public class Jeu_modele {
 		tmJeu.remove(jv);
 	}
 	
+	public static void viderBDD() {
+		
+		Connection cn=ConnexionBD.get_instance();
+		Statement st=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			st=cn.createStatement();
+			String sql="DELETE FROM Jeu";
+			st.executeUpdate(sql);
+			sql="DELETE FROM Editeur";
+			st.executeUpdate(sql);
+			sql="DELETE FROM Note";
+			st.executeUpdate(sql);
+			sql="DELETE FROM Plateforme";
+			st.executeUpdate(sql);
+			sql="DELETE FROM Genre";
+			st.executeUpdate(sql);
+			sql="DELETE FROM Reservation";
+			st.executeUpdate(sql);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				cn.close();
+				st.close();
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static ArrayList<Jeu> getJeuTous(){
 		ArrayList<Jeu> al=new ArrayList<Jeu>();
 		for(Entry<Integer, Jeu> entry : tmJeu.entrySet()){
@@ -61,7 +99,7 @@ public class Jeu_modele {
 	}
 	
 	public static boolean estenBD(Jeu jv) {
-		int estdlc=(jv.isDLC()) ? 1 : 0;
+		
 		boolean estbd=false;
 		
 		Connection cn=ConnexionBD.get_instance();
@@ -71,12 +109,10 @@ public class Jeu_modele {
 			
 			st=cn.createStatement();
 			String sql;
-			if(estdlc==1) {
-				sql="SELECT * FROM Jeu WHERE estDLC=1";
-			}
-			else{
-				sql="SELECT * FROM Jeu WHERE estDLC=0";
-			}
+			
+			
+				sql="SELECT * FROM Jeu";
+			
 			
 			ResultSet result =st.executeQuery(sql);
 			
@@ -124,16 +160,21 @@ public class Jeu_modele {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
+			
+			
 			String sql="INSERT INTO Jeu VALUES ("+
-					Integer.toString(tmJeu.size()+1 )
-					+",'"+jv.getnJeu()+"',"+
-					Double.toString(jv.getPrix())+","+
-					Integer.toString(jv.getDatesortie())+","+
+					Integer.toString(tmJeu.size() )
+					+",'"+jv.getNom()+"','"+
+					Double.toString(jv.getPrix())+"','"+
+					Integer.toString(jv.getDatesortie())+"',"+
 					Integer.toString(estdlc)+","+
 					Integer.toString(Note_modele.getId(jv.getNote()))+","+
 					Integer.toString(Plateforme_modele.getId(jv.getnPlateforme()))+","+
 					Integer.toString(Genre_modele.getId(jv.getGenre()))+","+
-					Integer.toString(Editeur_modele.getId(jv.getnEditeur()))+","+")";
+					Integer.toString(Editeur_modele.getId(jv.getnEditeur()))+",'"+
+					jv.getLienBoutique()+"')";
+			
+			
 			st.executeUpdate(sql);
 		}catch(SQLException e) {
 			e.printStackTrace();
