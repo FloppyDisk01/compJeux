@@ -32,20 +32,35 @@ public class PFiche_jeu extends JPanel{
 	
 	
 	public PFiche_jeu() {
-		breserver = new JButton("Réserver");
-		bretour = new JButton("Retour");
-		lab_nom=new JLabel("Nom : "+jv.getNom());
-		lab_prix=new JLabel("Prix : "+Double.toString(jv.getPrix()));
-		lab_genre=new JLabel("Genre : "+jv.getGenre().getName());
-		lab_date=new JLabel("Date de sortie : "+Integer.toString(jv.getDate()));
-		lab_note_sur_20=new JLabel("Note : "+Double.toString(
-				jv.getNote().getNote_sur_20()));
-		lab_nbre_votants=new JLabel("Nombre de votants : "+
-				Integer.toString(jv.getNote().getNbre_votants()));
-		lab_editeur=new JLabel("Editeur : "+jv.getEditeur().getName());
-		lab_plateforme=new JLabel("Plateforme : "+jv.getPlateforme().getName());
-		lab_url=new JLabel("URL :"+jv.getLienBoutique());
-		
+		if(jv!=null) {
+			breserver = new JButton("Réserver");
+			bretour = new JButton("Retour");
+			lab_nom=new JLabel("Nom : "+jv.getNom());
+			lab_prix=new JLabel("Prix : "+Double.toString(jv.getPrix()));
+			lab_genre=new JLabel("Genre : "+jv.getGenre().getName());
+			lab_date=new JLabel("Date de sortie : "+Integer.toString(jv.getDate()));
+			lab_note_sur_20=new JLabel("Note : "+Double.toString(
+					jv.getNote().getNote_sur_20()));
+			lab_nbre_votants=new JLabel("Nombre de votants : "+
+					Integer.toString(jv.getNote().getNbre_votants()));
+			lab_editeur=new JLabel("Editeur : "+jv.getEditeur().getName());
+			lab_plateforme=new JLabel("Plateforme : "+jv.getPlateforme().getName());
+			lab_url=new JLabel("URL :"+jv.getLienBoutique());
+		}
+		else {
+			breserver = new JButton("Réserver");
+			bretour = new JButton("Retour");
+			lab_nom=new JLabel("Nom : ");
+			lab_prix=new JLabel("Prix : ");
+			lab_genre=new JLabel("Genre : ");
+			lab_date=new JLabel("Date de sortie : ");
+			lab_note_sur_20=new JLabel("Note : ");
+			lab_nbre_votants=new JLabel("Nombre de votants : ");
+			lab_editeur=new JLabel("Editeur : ");
+			lab_plateforme=new JLabel("Plateforme : ");
+			lab_url=new JLabel("URL :");
+		}
+			
 
 		
 		this.add(bretour);
