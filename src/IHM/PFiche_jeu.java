@@ -20,6 +20,8 @@ public class PFiche_jeu extends JPanel{
 	private JLabel lab_editeur;
 	private JLabel lab_plateforme;
 	private JLabel lab_date;
+	private JLabel lab_url;
+	
 	
 	
 	public PFiche_jeu() {
@@ -33,6 +35,8 @@ public class PFiche_jeu extends JPanel{
 		lab_nbre_votants=new JLabel("Nombre de votants : ");
 		lab_editeur=new JLabel("Editeur : ");
 		lab_plateforme=new JLabel("Plateforme : ");
+		lab_url=new JLabel("URL :");
+		
 
 		
 		this.add(bretour);
@@ -44,6 +48,7 @@ public class PFiche_jeu extends JPanel{
 		this.add(lab_nbre_votants);
 		this.add(lab_editeur);
 		this.add(lab_plateforme);
+		this.add(lab_url);
 		this.add(breserver);
 		
 		breserver.addActionListener(new ActionListener() {
