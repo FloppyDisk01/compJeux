@@ -19,6 +19,7 @@ public class PConnexion extends JPanel{
 	private JLabel lab_mdp;
 	private JTextField tf_nom_user;
 	private JTextField tf_mdp;
+	private static Utilisateur u;
 	
 	
 	
@@ -66,5 +67,9 @@ public class PConnexion extends JPanel{
 		
 		
 		
+	}
+	
+	public static  String getUnom() {
+		return u.getNom();
 	}
 }

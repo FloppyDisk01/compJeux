@@ -52,6 +52,46 @@ public class Utilisateur_modele {
 		
 	}
 	
+	public static int getId(String nom) {
+		int id=0;
+		
+		Connection cn=ConnexionBD.get_instance();
+		Statement st=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			st=cn.createStatement();
+			String sql="SELECT * FROM Utilisateur";
+			ResultSet result =st.executeQuery(sql);
+			
+			while(result.next()) {
+				
+				if(nom.equals(result.getString("nom")) ){
+					
+					id=result.getInt("Id_utilisateur");
+					
+				}
+				
+			}
+			st.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				cn.close();
+				st.close();
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return id;
+		
+	}
+	
 	public static boolean estAdmin(Utilisateur u) {
 		boolean estadmin=false;
 		

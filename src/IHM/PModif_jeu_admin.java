@@ -4,11 +4,19 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
+import Jeu.Editeur;
+import Jeu.Genre;
+import Jeu.Jeu;
+import Jeu.Note;
+import Jeu.Plateforme;
 
 @SuppressWarnings("serial")
 public class PModif_jeu_admin extends JPanel{
@@ -36,8 +44,17 @@ public class PModif_jeu_admin extends JPanel{
 	private JLabel lab_note;
 	private JTextField jtf_note;
 	
+	private JLabel lab_nb_votants;
+	private JTextField jtf_nb_votants;
+	
 	private JLabel lab_url;
 	private JTextField jtf_url;
+	
+	private ButtonGroup g;
+	private JRadioButton DLC;
+	private JRadioButton Jeu;
+	
+	private Jeu jvmodif;
 	
 	
 	public PModif_jeu_admin() {
@@ -65,8 +82,20 @@ public class PModif_jeu_admin extends JPanel{
 		lab_note=new JLabel("Note : ");
 		jtf_note=new JTextField();
 		
+		lab_nb_votants=new JLabel("Nombre votants : ");
+		jtf_nb_votants=new JTextField();
+		
 		lab_url=new JLabel("Url : ");
 		jtf_url=new JTextField();
+		
+		
+		
+		g=new ButtonGroup();
+		DLC=new JRadioButton("DLC");
+		Jeu=new JRadioButton("Jeu");
+		g.add(Jeu);
+		g.add(DLC);
+		
 		
 		
 		
@@ -100,8 +129,13 @@ public class PModif_jeu_admin extends JPanel{
 		this.add(lab_note);
 		this.add(jtf_note);
 		
+		this.add(lab_nb_votants);
+		this.add(jtf_nb_votants);
+		jtf_plateforme.setPreferredSize(new Dimension(70,20));
+		
 		this.add(lab_url);
 		this.add(jtf_url);
+		jtf_plateforme.setPreferredSize(new Dimension(100,20));
 		
 		this.add(bannuler);
 		this.add(bvalider);
@@ -111,6 +145,24 @@ public class PModif_jeu_admin extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				String nom=jtf_note.getText();
+				double prix=Double.parseDouble(jtf_prix.getText());
+				int date =Integer.parseInt(jtf_date.getText());
+				double note =Double.parseDouble(jtf_note.getText());
+				int nb_votants= Integer.parseInt(jtf_nb_votants.getText());
+				Editeur editeur=new Editeur( jtf_editeur.getText());
+				Genre genre= new Genre(jtf_genre.getText());
+				Plateforme plateforme= new Plateforme(
+						jtf_plateforme.getText());
+				String url=jtf_url.getText();
+				boolean estDLC=DLC.isSelected();
+				
+				Note no=new Note(note,nb_votants);
+				
+				Jeu jvnouveau=new Jeu(nom, genre,date,editeur,
+						plateforme, no, prix, estDLC,url);
+				
+				jvmodif.modifJeu(jvnouveau);
 				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
 			}
 			

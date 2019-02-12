@@ -19,6 +19,7 @@ public class PResultats_user extends JPanel{
 	private JTable jeux;
 	private JButton plus_infos;
 	private JButton nouvelle_recherche;
+	private static Jeu jeuchoisi;
 	
 	public PResultats_user() {
 		Comparateur comp=PRecherche_user.getComp();

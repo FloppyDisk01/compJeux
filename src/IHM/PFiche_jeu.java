@@ -7,6 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Jeu.Jeu;
+import Model.Jeu_modele;
+import Model.Reservation_modele;
+import Model.Utilisateur_modele;
+
 
 @SuppressWarnings("serial")
 public class PFiche_jeu extends JPanel{
@@ -22,20 +27,24 @@ public class PFiche_jeu extends JPanel{
 	private JLabel lab_date;
 	private JLabel lab_url;
 	
+	private Jeu jv;
+	
 	
 	
 	public PFiche_jeu() {
 		breserver = new JButton("Réserver");
 		bretour = new JButton("Retour");
-		lab_nom=new JLabel("Nom : ");
-		lab_prix=new JLabel("Prix : ");
-		lab_genre=new JLabel("Genre : ");
-		lab_date=new JLabel("Date de sortie : ");
-		lab_note_sur_20=new JLabel("Note : ");
-		lab_nbre_votants=new JLabel("Nombre de votants : ");
-		lab_editeur=new JLabel("Editeur : ");
-		lab_plateforme=new JLabel("Plateforme : ");
-		lab_url=new JLabel("URL :");
+		lab_nom=new JLabel("Nom : "+jv.getNom());
+		lab_prix=new JLabel("Prix : "+Double.toString(jv.getPrix()));
+		lab_genre=new JLabel("Genre : "+jv.getGenre().getName());
+		lab_date=new JLabel("Date de sortie : "+Integer.toString(jv.getDate()));
+		lab_note_sur_20=new JLabel("Note : "+Double.toString(
+				jv.getNote().getNote_sur_20()));
+		lab_nbre_votants=new JLabel("Nombre de votants : "+
+				Integer.toString(jv.getNote().getNbre_votants()));
+		lab_editeur=new JLabel("Editeur : "+jv.getEditeur().getName());
+		lab_plateforme=new JLabel("Plateforme : "+jv.getPlateforme().getName());
+		lab_url=new JLabel("URL :"+jv.getLienBoutique());
 		
 
 		
@@ -56,7 +65,13 @@ public class PFiche_jeu extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				
+				if(!(Reservation_modele.estenBD(
+						Jeu_modele.getId(jv), Utilisateur_modele.getId(
+								PConnexion.getUnom())))) {
+					Reservation_modele.ajoutReservation(Jeu_modele.getId(jv),
+							Utilisateur_modele.getId(
+									PConnexion.getUnom()));
+				}
 			}
 			
 		});
