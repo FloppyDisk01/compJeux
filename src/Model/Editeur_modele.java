@@ -1,6 +1,7 @@
 package Model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -12,15 +13,46 @@ import java.util.Objects;
 import java.util.TreeMap;
 
 import Jeu.Editeur;
+import Jeu.Jeu;
 
 public class Editeur_modele {
 	static TreeMap<Integer,Editeur> tmEditeur;
 	
 	public static int getId(Editeur ed) {
-		return 1;
+		
+		for(Entry<Integer, Editeur> entry : tmEditeur.entrySet()){
+		      if(entry.getValue()==ed) return entry.getKey();
+		}
+		return 0;
+	
 	}
 	
 	public static void supprEditeur(Editeur ed) {
+		
+		Connection cn=ConnexionBD.get_instance();
+		Statement st=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			st=cn.createStatement();
+			String sql="DELETE FROM Editeur WHERE Id_editeur="+
+			Integer.toString(getId(ed));
+			st.executeUpdate(sql);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				cn.close();
+				st.close();
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		tmEditeur.remove(ed);
 		
 	}
 	
@@ -31,13 +63,55 @@ public class Editeur_modele {
 	}
 	
 	public static boolean estenBD(Editeur ed) {
-		return true;
+		
+		
+		boolean estbd=false;
+		
+		Connection cn=ConnexionBD.get_instance();
+		Statement st=null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			st=cn.createStatement();
+			String sql;
+			
+				sql="SELECT * FROM Editeur";
+			
+			
+			
+			ResultSet result =st.executeQuery(sql);
+			
+			while(result.next()) {
+				
+				
+				
+				if(Integer.toString(getId(ed)).equals(result.getString("Id_editeur")) ){
+					
+					estbd=true;
+					
+				}
+				
+			}
+			st.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				cn.close();
+				st.close();
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return estbd;
+		
 	}
 	
 	public static Editeur getEditeur(int id) {
-		Editeur ed=new Editeur("aaa");
-		
-		return ed;
+		return tmEditeur.get(id);
 	}
 	
 	
@@ -48,7 +122,7 @@ public class Editeur_modele {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
-			String sql="INSERT INTO Editeur VALUES (1,'nomediteur')";
+			String sql="INSERT INTO Editeur VALUES ("+getId(ed)+",'"+ed.getName()+"')";
 			st.executeUpdate(sql);
 		}catch(SQLException e) {
 			e.printStackTrace();
