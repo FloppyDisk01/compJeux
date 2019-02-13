@@ -31,4 +31,9 @@ public class Plateforme {
 		//TODO
 		Plateforme_modele.ajoutPlateforme(this);
 	}
+	
+	public String toString() {
+		return this.getName();
+		
+	}
 }

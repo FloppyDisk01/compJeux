@@ -134,10 +134,14 @@ public class PRecherche_user extends JPanel{
 						,
 						Double.parseDouble(jtf_prix.getText()),
 						DLC.isSelected(),"URL");
-				
+				System.out.println(jvrecherche);
 				
 				
 				comp=new Comparateur(jvrecherche);
+				Fenetre.resultats=null;
+				Fenetre.resultats=new PResultats_user();
+				Fenetre.content.add(Fenetre.resultats,Fenetre.listcontent[2]);
+				
 				
 				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[2]);
 			}

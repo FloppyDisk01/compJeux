@@ -64,7 +64,7 @@ public class Editeur_modele {
 				e.printStackTrace();
 			}
 		}
-		tmEditeur.remove(ed);
+		tmEditeur.remove(getId(ed));
 		
 	}
 	
@@ -131,7 +131,9 @@ public class Editeur_modele {
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
 		
-		tmEditeur.put(tmEditeur.size()+1, ed);
+		
+		if(tmEditeur.isEmpty()) tmEditeur.put(1, ed);
+		else tmEditeur.put(tmEditeur.lastKey()+1, ed);
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

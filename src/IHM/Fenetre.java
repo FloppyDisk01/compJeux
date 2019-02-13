@@ -21,9 +21,9 @@ public class Fenetre extends JFrame{
 	
 	PConnexion connexion;
 	PAjout_jeu_admin ajout_jeu_admin;
-	PFiche_jeu fiche_jeu;
+	static PFiche_jeu fiche_jeu;
 	PMenu_admin menu_admin;
-	PModif_jeu_admin modif_jeu_admin;
+	static PModif_jeu_admin modif_jeu_admin;
 	PRecherche_user recherche_user;
 	static PResultats_user resultats;
 	static PSelect_suppr_modif_jeu_admin select_suppr_modif_jeu_admin;
@@ -31,7 +31,7 @@ public class Fenetre extends JFrame{
 	
 	public Fenetre() {
 		this.setTitle("Comparateur");
-		this.setSize(500, 500);
+		this.setSize(1000, 500);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		connexion=new PConnexion();
@@ -62,6 +62,8 @@ public class Fenetre extends JFrame{
 		
 		
 	}
+	
+	
 	
 	
 }

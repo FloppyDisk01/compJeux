@@ -58,7 +58,7 @@ public class Genre_modele {
 				e.printStackTrace();
 			}
 		}
-		tmGenre.remove(ed);
+		tmGenre.remove(getId(ed));
 		
 	}
 	
@@ -124,7 +124,10 @@ public class Genre_modele {
 	public static void ajoutGenre(Genre ed) {
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
-		tmGenre.put(tmGenre.size()+1, ed);
+		
+		
+		if(tmGenre.isEmpty()) tmGenre.put(1, ed);
+		else tmGenre.put(tmGenre.lastKey()+1, ed);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			

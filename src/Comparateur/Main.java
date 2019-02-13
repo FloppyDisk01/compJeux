@@ -55,10 +55,19 @@ public class Main {
 		Editeur ed3=new Editeur("Nintendo");
 		Plateforme p3=new Plateforme("Switch");
 		Note n3=new Note(13,100);
-		Jeu jv3=new Jeu("Animal Crossing", g3, 2017, ed3, p2
+		Jeu jv3=new Jeu("Animal Crossing", g3, 2017, ed3, p3
 				, n3, 40.0, true, "Lien3");
 		
 		jv3.ajoutJeu();
+		
+		Genre g4=new Genre("Combat");
+		Editeur ed4=new Editeur("Nintendo");
+		Plateforme p4=new Plateforme("Switch");
+		Note n4=new Note(13,100);
+		Jeu jv4=new Jeu("Super street2", g4, 2017, ed4, p4
+				, n4, 40.0, true, "Lien3");
+		
+		jv4.ajoutJeu();
 		
 		
 		Fenetre fen=new Fenetre();

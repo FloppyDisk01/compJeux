@@ -38,7 +38,7 @@ public class Note_modele {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
-			String sql="DELETE FROM NoteWHERE Id_note="+
+			String sql="DELETE FROM Note WHERE Id_note="+
 			Integer.toString(getId(n));
 			st.executeUpdate(sql);
 			
@@ -55,7 +55,7 @@ public class Note_modele {
 				e.printStackTrace();
 			}
 		}
-		tmNote.remove(n);
+		tmNote.remove(getId(n));
 	}
 	
 	public static ArrayList<Note> getNoteTous(){
@@ -117,7 +117,10 @@ public class Note_modele {
 	public static void ajoutNote(Note n) {
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
-		tmNote.put(tmNote.size()+1, n);
+		
+		
+		if(tmNote.isEmpty()) tmNote.put(1, n);
+		else tmNote.put(tmNote.lastKey()+1, n);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			

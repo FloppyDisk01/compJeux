@@ -30,7 +30,7 @@ public class Genre {
 		Genre_modele.ajoutGenre(this);
 	}
 	
-	String toString(Genre g) {
-		return g.getName();
+	public String toString() {
+		return getName();
 	}
 }

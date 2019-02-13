@@ -20,6 +20,8 @@ public class PConnexion extends JPanel{
 	private JTextField tf_nom_user;
 	private JTextField tf_mdp;
 	private static Utilisateur u;
+	private static String login;
+	
 	
 	
 	
@@ -45,7 +47,7 @@ public class PConnexion extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				String login=tf_nom_user.getText();
+				login=tf_nom_user.getText();
 				String mdp=tf_mdp.getText();
 				
 				Utilisateur u=new Utilisateur(login,mdp);
@@ -70,6 +72,6 @@ public class PConnexion extends JPanel{
 	}
 	
 	public static  String getUnom() {
-		return u.getNom();
+		return login;
 	}
 }

@@ -25,13 +25,15 @@ public class Jeu_modele {
 	}
 	
 	public static void supprJeu(Jeu jv) {
-		System.out.println("suppr");
+		
+		
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			st=cn.createStatement();
+			System.out.println("test"+Integer.toString(getId(jv)));
 			String sql="DELETE FROM Jeu WHERE Id_jeu="+
 			Integer.toString(getId(jv));
 			st.executeUpdate(sql);
@@ -49,7 +51,8 @@ public class Jeu_modele {
 				e.printStackTrace();
 			}
 		}
-		tmJeu.remove(jv);
+		System.out.println("test apres sql "+Integer.toString(getId(jv)));
+		tmJeu.remove(getId(jv));
 	}
 	
 	public static void viderBDD() {
@@ -151,7 +154,8 @@ public class Jeu_modele {
 	
 	
 	public static void ajoutJeu(Jeu jv) {
-		tmJeu.put(tmJeu.size()+1, jv);
+		if(tmJeu.isEmpty()) tmJeu.put(1, jv);
+		else tmJeu.put(tmJeu.lastKey()+1, jv);
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
 		int estdlc=(jv.isDLC()) ? 1 : 0;
@@ -163,7 +167,7 @@ public class Jeu_modele {
 			
 			
 			String sql="INSERT INTO Jeu VALUES ("+
-					Integer.toString(tmJeu.size() )
+					Integer.toString(tmJeu.lastKey() )
 					+",'"+jv.getNom()+"','"+
 					Double.toString(jv.getPrix())+"','"+
 					Integer.toString(jv.getDatesortie())+"',"+
@@ -193,5 +197,82 @@ public class Jeu_modele {
 	
 	public static TreeMap<Integer,Jeu> getTmJeu(){
 		return Jeu_modele.tmJeu;
+	}
+
+	public static void jvmodif(Jeu jeu, Jeu jeuAModif) {
+		// TODO Auto-generated method stub
+		Connection cn=ConnexionBD.get_instance();
+		Statement st=null;
+		int estdlc=(jeuAModif.isDLC()) ? 1 : 0;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			st=cn.createStatement();
+			
+			
+			String sql="UPDATE Jeu SET nom = '"+jeuAModif.getNom()+
+					"',prix ="+Double.toString(jeuAModif.getPrix())+
+					",date_sortie ="+Integer.toString(jeuAModif.getDate())+
+					", estDLC="+Integer.toString(estdlc)+" WHERE Id_jeu = "+
+					Integer.toString(getId(jeu));
+				    
+				System.out.println(sql);
+			
+			
+			st.executeUpdate(sql);
+			
+			sql="UPDATE Note SET note_sur_20 = "+Double.toString(
+					jeuAModif.getNote().getNote_sur_20())+
+					" ,nombre_votants ="+Integer.toString(
+							jeuAModif.getNote().getNbre_votants())+" WHERE Id_note = "+
+					Integer.toString(Note_modele.getId(jeu.getNote()));
+				    
+				System.out.println(sql);
+			
+			
+			st.executeUpdate(sql);
+			
+			sql="UPDATE Editeur SET nom = '"+jeuAModif.getEditeur().getName()+
+					" ' "+" WHERE Id_editeur = "+
+					Integer.toString(Editeur_modele.getId(jeu.getEditeur()));
+				    
+				System.out.println(sql);
+			
+			
+			st.executeUpdate(sql);
+			
+			sql="UPDATE Plateforme SET nom = '"+jeuAModif.getPlateforme().getName()+
+					" ' "+" WHERE Id_plateforme = "+
+					Integer.toString(Plateforme_modele.getId(jeu.getPlateforme()));
+				    
+				System.out.println(sql);
+			
+			
+			st.executeUpdate(sql);
+			
+			sql="UPDATE Genre SET nom = '"+jeuAModif.getGenre().getName()+
+					" ' "+" WHERE Id_genre = "+
+					Integer.toString(Genre_modele.getId(jeu.getGenre()));
+				    
+				System.out.println(sql);
+			
+			
+			st.executeUpdate(sql);
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				cn.close();
+				st.close();
+			
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

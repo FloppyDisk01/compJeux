@@ -1,7 +1,10 @@
 package Jeu;
 
 import Model.Editeur_modele;
+import Model.Genre_modele;
 import Model.Jeu_modele;
+import Model.Note_modele;
+import Model.Plateforme_modele;
 
 public class Jeu {
 	private String nJeu;
@@ -112,10 +115,50 @@ public class Jeu {
 	 * @param nouvJeu jeu à remplacer dans la BDD
 	 */
 	public void modifJeu(Jeu jeuAModif) {
-		if(Jeu_modele.estenBD(jeuAModif)) {
-			Jeu_modele.supprJeu(jeuAModif);
-			Jeu_modele.ajoutJeu(this);
+		boolean different=false;
+		if(!jeuAModif.getNom().equals(this.getNom())) {
+			
+			different=true;
 		}
+		else if(Math.abs(this.prix-jeuAModif.getPrix())>0.1) {
+			
+		}
+		else if(jeuAModif.getDate()!=datesortie) {
+			different=true;
+		}
+			
+		else if(jeuAModif.isDLC!=this.isDLC())
+			different=true;
+		else if(!(jeuAModif.getEditeur().getName().equals(this.getEditeur().getName())))
+			different=true;
+		else if(!(jeuAModif.getGenre().getName().equals(this.getGenre().getName())))
+			different=true;
+		else if(!(jeuAModif.getPlateforme().getName().equals(this.getPlateforme().getName())))
+			different=true;
+		else if(Math.abs(this.getNote().getNote_sur_20()-
+				jeuAModif.getNote().getNote_sur_20())>0.1)
+			different =true;
+		else if(jeuAModif.getNote().getNbre_votants()!=this.getNote().getNbre_votants())
+			different =true;
+		else if(!(jeuAModif.getLienBoutique().equals(this.getLienBoutique())))
+			different=true;
+		
+		if(different) {
+			
+			Jeu_modele.jvmodif(this,jeuAModif);
+			setnJeu(jeuAModif.getNom());
+			setPrix(jeuAModif.getPrix());
+			setDatesortie(jeuAModif.getDate());
+			setnEditeur(jeuAModif.getEditeur());
+			setnPlateforme(jeuAModif.getPlateforme());
+			setnGenre(jeuAModif.getGenre());
+			setNote(jeuAModif.getNote());
+			setLienBoutique(jeuAModif.getLienBoutique());
+			setDLC(jeuAModif.isDLC());
+			
+		}
+		
+		
 	}
 	
 	/**
@@ -123,8 +166,12 @@ public class Jeu {
 	 */
 	public void supprJeu() {
 		if(Jeu_modele.estenBD(this)) {
-			System.out.println("supprJeudansjeu");
+			System.out.println("test suppr de la modif");
 			Jeu_modele.supprJeu(this);
+			Editeur_modele.supprEditeur(this.getEditeur());
+			Genre_modele.supprGenre(this.getGenre());
+			Plateforme_modele.supprPlateforme(this.getPlateforme());
+			Note_modele.supprNote(this.getNote());
 			
 		}
 			
@@ -162,6 +209,14 @@ public class Jeu {
 		this.nEditeur = nEditeur;
 	}
 
+	public Genre getnGenre() {
+		return nGenre;
+	}
+
+	public void setnGenre(Genre nGenre) {
+		this.nGenre = nGenre;
+	}
+
 	public Plateforme getnPlateforme() {
 		return nPlateforme;
 	}
@@ -194,19 +249,20 @@ public class Jeu {
 		this.isDLC = isDLC;
 	}
 	
-	String toString(Jeu jv) {
-		return "Nom : "+jv.getNom()+"\n"+
-			"Prix : "+Double.toString(jv.getPrix())+"\n"+
+	public String toString() {
+		return "Nom : "+getNom()+"\n"+
+			"Prix : "+Double.toString(getPrix())+"\n"+
 			"Date : "+Integer.toString(
-					jv.getDate())+"\n"+
-			"Editeur : "+jv.getEditeur().getName()+"\n"+
-			"Genre : "+jv.getGenre().getName()+"\n"+
-			"Plateforme : "+jv.getPlateforme().getName()+"\n"+
-			"Note : "+Double.toString(jv.getNote().getNote_sur_20())+"\n"+
+					getDate())+"\n"+
+			"Editeur : "+getEditeur().getName()+"\n"+
+			"Genre : "+getGenre().getName()+"\n"+
+			"Plateforme : "+getPlateforme().getName()+"\n"+
+			"Note : "+Double.toString(getNote().getNote_sur_20())+"\n"+
 			"Nombre votants : "+Integer.toString(
-					jv.getNote().getNbre_votants())+"\n"+
-			"URL :"+ jv.getLienBoutique()+"\n"+
-			"EstDLC : "+Boolean.toString(jv.isDLC);
+					getNote().getNbre_votants())+"\n"+
+			"URL :"+ getLienBoutique()+"\n"+
+			"EstDLC : "+Boolean.toString(isDLC);
 	
 	}
+	
 }

@@ -3,6 +3,7 @@ package IHM;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -11,12 +12,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import Jeu.Editeur;
 import Jeu.Genre;
 import Jeu.Jeu;
 import Jeu.Note;
 import Jeu.Plateforme;
+import Model.Jeu_modele;
 
 @SuppressWarnings("serial")
 public class PModif_jeu_admin extends JPanel{
@@ -56,6 +59,181 @@ public class PModif_jeu_admin extends JPanel{
 	
 	private Jeu jvmodif;
 	
+	
+	public PModif_jeu_admin(String nom, String prix,String date, String nomg,
+			String nomed, String nompl,String note_20, String nb_votants,
+			String url,boolean estDLC) {
+		jvmodif=PSelect_suppr_modif_jeu_admin.getJeuchoisi();
+		
+		
+		bvalider=new JButton("Valider");
+		bannuler=new JButton("Annuler");
+		
+		lab_nom=new JLabel("Nom : ");
+		jtf_nom=new JTextField(nom);
+		
+		lab_prix=new JLabel("Prix : ");
+		jtf_prix=new JTextField(prix);
+		
+		lab_date=new JLabel("Date (Année) : ");
+		jtf_date=new JTextField(date);
+		
+		lab_genre=new JLabel("Genre : ");
+		jtf_genre=new JTextField(nomg);
+		
+		lab_editeur=new JLabel("Editeur : ");
+		jtf_editeur=new JTextField(nomed);
+		
+		lab_plateforme=new JLabel("Plateforme : ");
+		jtf_plateforme=new JTextField(nompl);
+		
+		lab_note=new JLabel("Note : ");
+		jtf_note=new JTextField(note_20);
+		
+		lab_nb_votants=new JLabel("Nombre votants : ");
+		jtf_nb_votants=new JTextField(nb_votants);
+		
+		lab_url=new JLabel("Url : ");
+		jtf_url=new JTextField(url);
+		
+		
+		
+		g=new ButtonGroup();
+		DLC=new JRadioButton("DLC");
+		Jeu=new JRadioButton("Jeu");
+		g.add(Jeu);
+		g.add(DLC);
+		
+		if(estDLC) DLC.setSelected(true);
+		else Jeu.setSelected(true);
+		
+		
+		this.add(lab_nom);
+		this.add(jtf_nom);
+		jtf_nom.setPreferredSize(new Dimension(100,20));
+		
+		this.add(lab_prix);
+		this.add(jtf_prix);
+		jtf_prix.setPreferredSize(new Dimension(70,20));
+		
+		this.add(lab_date);
+		this.add(jtf_date);
+		jtf_date.setPreferredSize(new Dimension(40,20));
+		
+		this.add(lab_genre);
+		
+		this.add(jtf_genre);
+		jtf_genre.setPreferredSize(new Dimension(100,20));
+		
+		this.add(lab_editeur);
+		
+		this.add(jtf_editeur);
+		jtf_editeur.setPreferredSize(new Dimension(100,20));
+		
+		this.add(lab_plateforme);
+		
+		this.add(jtf_plateforme);
+		jtf_plateforme.setPreferredSize(new Dimension(100,20));
+		
+		this.add(lab_note);
+		this.add(jtf_note);
+		
+		this.add(lab_nb_votants);
+		this.add(jtf_nb_votants);
+		jtf_plateforme.setPreferredSize(new Dimension(70,20));
+		
+		this.add(lab_url);
+		this.add(jtf_url);
+		jtf_plateforme.setPreferredSize(new Dimension(100,20));
+		
+		jtf_note.setPreferredSize(new Dimension(100,20));
+		jtf_note.setPreferredSize(new Dimension(100,20));
+		jtf_nb_votants.setPreferredSize(new Dimension(100,20));
+		jtf_url.setPreferredSize(new Dimension(100,20));
+		
+		this.add(Jeu);
+		this.add(DLC);
+		this.add(bannuler);
+		this.add(bvalider);
+		
+		bvalider.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				String nom=jtf_nom.getText();
+				double prix=Double.parseDouble(jtf_prix.getText());
+				int date =Integer.parseInt(jtf_date.getText());
+				double note =Double.parseDouble(jtf_note.getText());
+				int nb_votants= Integer.parseInt(jtf_nb_votants.getText());
+				Editeur editeur=new Editeur( jtf_editeur.getText());
+				Genre genre= new Genre(jtf_genre.getText());
+				Plateforme plateforme= new Plateforme(
+						jtf_plateforme.getText());
+				String url=jtf_url.getText();
+				boolean estDLC=DLC.isSelected();
+				
+				Note no=new Note(note,nb_votants);
+				
+				Jeu jvnouveau=new Jeu(nom, genre,date,editeur,
+						plateforme, no, prix, estDLC,url);
+				
+				
+				jvmodif.modifJeu(jvnouveau);
+				
+				DefaultTableModel tableModel = new DefaultTableModel();
+				tableModel.addColumn("Nom");
+				tableModel.addColumn("Genre");
+				tableModel.addColumn("Prix");
+				tableModel.addColumn("date");
+				tableModel.addColumn("editeur");
+				tableModel.addColumn("plateforme");
+				tableModel.addColumn("Note");
+				tableModel.addColumn("Id");
+				
+				ArrayList<Jeu> al=Jeu_modele.getJeuTous();
+				for (int i = 0; i < al.size(); i++){
+						
+					   String nomal = al.get(i).getNom();
+					   String genre_nom = al.get(i).getGenre().getName();
+					   int id=Jeu_modele.getId(al.get(i));
+					   double prixal = al.get(i).getPrix();
+					   int dateal = al.get(i).getDate();
+					   String editeur_nom = al.get(i).getEditeur().getName();
+					   String plateforme_nom = al.get(i).getPlateforme().getName();
+					   double note_20 = al.get(i).getNote().getNote_sur_20();
+					  
+					 
+					 
+
+					   Object[] data = {nomal, genre_nom, prixal, dateal, editeur_nom,
+							   			plateforme_nom , note_20,id};
+
+					   tableModel.addRow(data);
+
+					}
+				
+				
+				Fenetre.resultats.getJeux().setModel(tableModel);
+				Fenetre.select_suppr_modif_jeu_admin.getJeux().setModel(tableModel);
+				tableModel.fireTableDataChanged();
+				
+				
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
+			}
+			
+		});
+		
+		bannuler.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[6]);
+			}
+			
+		});
+	}
 	
 	public PModif_jeu_admin() {
 		bvalider=new JButton("Valider");

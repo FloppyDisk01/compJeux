@@ -58,7 +58,7 @@ public class Plateforme_modele {
 				e.printStackTrace();
 			}
 		}
-		tmPlateforme.remove(ed);
+		tmPlateforme.remove(getId(ed));
 		
 	}
 	
@@ -124,7 +124,9 @@ public class Plateforme_modele {
 	public static void ajoutPlateforme(Plateforme ed) {
 		Connection cn=ConnexionBD.get_instance();
 		Statement st=null;
-		tmPlateforme.put(tmPlateforme.size()+1, ed);
+		
+		if(tmPlateforme.isEmpty()) tmPlateforme.put(1, ed);
+		else tmPlateforme.put(tmPlateforme.lastKey()+1, ed);
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			

@@ -28,7 +28,7 @@ public class Comparateur extends ComparateurAbstrait{
 		score += 30 * Distance(jv.getPlateforme().getName(), jvrecherche.getPlateforme().getName());
 		//Editeur
 		score += 30 * Distance(jv.getEditeur().getName(), jvrecherche.getEditeur().getName());
-		
+		System.out.println("score = :" + Double.toString(score));
 		return score.intValue();
 	}
 	

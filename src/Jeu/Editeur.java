@@ -36,7 +36,7 @@ public class Editeur {
 		Editeur_modele.ajoutEditeur(this);
 	}
 
-	String toString(Editeur ed) {
-		return ed.getName();
+	public String toString() {
+		return getName();
 	}
 }

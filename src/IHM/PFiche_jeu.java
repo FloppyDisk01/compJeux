@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Jeu.Jeu;
@@ -32,7 +33,9 @@ public class PFiche_jeu extends JPanel{
 	
 	
 	public PFiche_jeu() {
+		jv=PResultats_user.getJeuchoisi();
 		if(jv!=null) {
+			System.out.println("panneau fiche changé");
 			breserver = new JButton("Réserver");
 			bretour = new JButton("Retour");
 			lab_nom=new JLabel("Nom : "+jv.getNom());
@@ -86,7 +89,14 @@ public class PFiche_jeu extends JPanel{
 					Reservation_modele.ajoutReservation(Jeu_modele.getId(jv),
 							Utilisateur_modele.getId(
 									PConnexion.getUnom()));
+					JOptionPane.showMessageDialog(PFiche_jeu.this,
+							"Jeu réservé !","Info",
+							JOptionPane.INFORMATION_MESSAGE);
 				}
+				else
+					JOptionPane.showMessageDialog(PFiche_jeu.this,
+							"Jeu déjà réservé !","Erreur",
+							JOptionPane.ERROR_MESSAGE);
 			}
 			
 		});

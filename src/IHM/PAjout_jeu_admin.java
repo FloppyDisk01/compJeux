@@ -3,6 +3,7 @@ package IHM;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -11,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import Jeu.Jeu;
 import Jeu.Editeur;
@@ -154,6 +157,7 @@ public class PAjout_jeu_admin extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
 				// TODO Auto-generated method stub
 				String nom=jtf_nom.getText();
 				double prix=Double.parseDouble(jtf_prix.getText());
@@ -171,7 +175,7 @@ public class PAjout_jeu_admin extends JPanel{
 				
 				Jeu jvajout=new Jeu(nom, genre,date,editeur,
 						plateforme, no, prix, estDLC,url);
-				
+				System.out.println(jvajout);
 				
 				
 				jvajout.ajoutJeu();
@@ -180,8 +184,45 @@ public class PAjout_jeu_admin extends JPanel{
 						"Jeu ajouté !","Info",
 						JOptionPane.INFORMATION_MESSAGE);
 				
-				Fenetre.select_suppr_modif_jeu_admin.revalidate();
-				Fenetre.resultats.revalidate();
+				
+				
+				DefaultTableModel tableModel = new DefaultTableModel();
+				tableModel.addColumn("Nom");
+				tableModel.addColumn("Genre");
+				tableModel.addColumn("Prix");
+				tableModel.addColumn("date");
+				tableModel.addColumn("editeur");
+				tableModel.addColumn("plateforme");
+				tableModel.addColumn("Note");
+				tableModel.addColumn("Id");
+				
+				ArrayList<Jeu> al=Jeu_modele.getJeuTous();
+				for (int i = 0; i < al.size(); i++){
+						
+					   String nomal = al.get(i).getNom();
+					   String genre_nom = al.get(i).getGenre().getName();
+					   int id=Jeu_modele.getId(al.get(i));
+					   double prixal = al.get(i).getPrix();
+					   int dateal = al.get(i).getDate();
+					   String editeur_nom = al.get(i).getEditeur().getName();
+					   String plateforme_nom = al.get(i).getPlateforme().getName();
+					   double note_20 = al.get(i).getNote().getNote_sur_20();
+					  
+					 
+					 
+
+					   Object[] data = {nomal, genre_nom, prixal, dateal, editeur_nom,
+							   			plateforme_nom , note_20,id};
+
+					   tableModel.addRow(data);
+
+					}
+				
+				
+				Fenetre.resultats.getJeux().setModel(tableModel);
+				Fenetre.select_suppr_modif_jeu_admin.getJeux().setModel(tableModel);
+				tableModel.fireTableDataChanged();
+				
 				Fenetre.cl.show(Fenetre.content, Fenetre.listcontent[4]);
 			}
 			
